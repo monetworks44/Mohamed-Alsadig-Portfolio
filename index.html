@@ -633,8 +633,76 @@ footer{text-align:center;padding:40px 24px;border-top:1px solid var(--border)}
     display: block;
   }
 }
+ /* ---------- FORM NOTIFICATION STYLES ---------- */
+    .form-notification {
+      position: fixed;
+      top: 100px;
+      right: 20px;
+      background: var(--card);
+      padding: 16px 24px;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-lg);
+      z-index: 1000;
+      transform: translateX(120%);
+      transition: transform 0.3s ease-out;
+      max-width: 350px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .form-notification.show {
+      transform: translateX(0);
+    }
+    
+    .form-notification.success {
+      border-left: 4px solid var(--success);
+    }
+    
+    .form-notification.error {
+      border-left: 4px solid var(--error);
+    }
+    
+    .form-notification.loading {
+      border-left: 4px solid var(--accent);
+    }
+    
+    .form-notification.loading::before {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid transparent;
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    /* Form button loading state */
+    .btn.loading {
+      pointer-events: none;
+      opacity: 0.7;
+    }
+    
+    .btn.loading::after {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid transparent;
+      border-top-color: currentColor;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-left: 8px;
+    }
 </style>
 <base target="_blank">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+  (function() {
+    emailjs.init("DHhW_eQ1v-xWhgNjd"); // Replace with your actual public key
+  })();
+</script>
 </head>
 
 <body>
@@ -1074,7 +1142,7 @@ footer{text-align:center;padding:40px 24px;border-top:1px solid var(--border)}
     <!-- Project 1 -->
     <div class="project" data-project-id="1">
       <div class="project-image-wrapper">
-        <img class="project-image" src="https://techvify.com/wp-content/uploads/2023/06/flutter-app-development.png" alt="VLAN Implementation Project">
+        <img class="project-image" src="https://www.guru.com/blog/wp-content/uploads/2023/02/flutter-app-dev.jpg" alt="VLAN Implementation Project">
         <div class="project-overlay"></div>
       </div>
       <div class="project-content">
@@ -1100,18 +1168,18 @@ footer{text-align:center;padding:40px 24px;border-top:1px solid var(--border)}
     <!-- Project 2 -->
     <div class="project" data-project-id="2">
       <div class="project-image-wrapper">
-        <img class="project-image" src="https://picsum.photos/seed/ospfproject/600/400.jpg" alt="OSPF Network Design">
+        <img class="project-image" src="https://miro.medium.com/v2/resize:fit:1400/1*EEHimBtBgYFGZw2sRup0eQ.png" alt="OSPF Network Design">
         <div class="project-overlay"></div>
       </div>
       <div class="project-content">
         <div class="project-header">
-          <h3>OSPF Network Design</h3>
+          <h3>Cleaning Services Admin Panel Application</h3>
         </div>
-        <p>Created a redundant OSPF routing topology with proper area segmentation, route summarization, and failover mechanisms for a service provider network.</p>
+        <p>The Cleaning Services Admin Panel Application serves as the management layer for the customer mobile application, enabling administrators to monitor, control, and update services and requests in real time through a shared backend.</p>
         <div class="project-tags">
-          <span class="project-tag">OSPF</span>
-          <span class="project-tag">Routing</span>
-          <span class="project-tag">Redundancy</span>
+          <span class="project-tag">Flutter</span>
+          <span class="project-tag">Dart</span>
+          <span class="project-tag">Web-App</span>
         </div>
       </div>
       <a href="#" class="project-link">
@@ -1123,109 +1191,9 @@ footer{text-align:center;padding:40px 24px;border-top:1px solid var(--border)}
       </a>
     </div>
 
-    <!-- Project 3 -->
-    <div class="project" data-project-id="3">
-      <div class="project-image-wrapper">
-        <img class="project-image" src="https://picsum.photos/seed/ipv6project/600/400.jpg" alt="IPv6 Migration">
-        <div class="project-overlay"></div>
-      </div>
-      <div class="project-content">
-        <div class="project-header">
-          <h3>Dual-Stack IPv6 Migration</h3>
-        </div>
-        <p>Planned and partially implemented an IPv6 migration strategy using dual-stack approach, including address planning, DNS configuration, and security considerations.</p>
-        <div class="project-tags">
-          <span class="project-tag">IPv6</span>
-          <span class="project-tag">Migration</span>
-          <span class="project-tag">Dual-Stack</span>
-        </div>
-      </div>
-      <a href="#" class="project-link">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-          <polyline points="15,3 21,3 21,9"/>
-          <line x1="10" y1="14" x2="21" y2="3"/>
-        </svg>
-      </a>
-    </div>
 
-    <!-- Project 4 -->
-    <div class="project" data-project-id="4">
-      <div class="project-image-wrapper">
-        <img class="project-image" src="https://picsum.photos/seed/securityproject/600/400.jpg" alt="Network Security Implementation">
-        <div class="project-overlay"></div>
-      </div>
-      <div class="project-content">
-        <div class="project-header">
-          <h3>Network Security Implementation</h3>
-        </div>
-        <p>Deployed a comprehensive security solution including ACLs, port security, DHCP snooping, and dynamic ARP inspection to protect against common network threats.</p>
-        <div class="project-tags">
-          <span class="project-tag">Security</span>
-          <span class="project-tag">ACLs</span>
-          <span class="project-tag">Threat Prevention</span>
-        </div>
-      </div>
-      <a href="#" class="project-link">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-          <polyline points="15,3 21,3 21,9"/>
-          <line x1="10" y1="14" x2="21" y2="3"/>
-        </svg>
-      </a>
-    </div>
 
-    <!-- Project 5 -->
-    <div class="project" data-project-id="5">
-      <div class="project-image-wrapper">
-        <img class="project-image" src="https://picsum.photos/seed/officeproject/600/400.jpg" alt="Office Network Setup">
-        <div class="project-overlay"></div>
-      </div>
-      <div class="project-content">
-        <div class="project-header">
-          <h3>Small Office Network Setup</h3>
-        </div>
-        <p>Designed and configured a complete network infrastructure for a small office, including VLANs, inter-VLAN routing, DHCP, DNS, and internet connectivity with basic firewall rules.</p>
-        <div class="project-tags">
-          <span class="project-tag">Network Design</span>
-          <span class="project-tag">Implementation</span>
-          <span class="project-tag">Services</span>
-        </div>
-      </div>
-      <a href="#" class="project-link">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-          <polyline points="15,3 21,3 21,9"/>
-          <line x1="10" y1="14" x2="21" y2="3"/>
-        </svg>
-      </a>
-    </div>
-
-    <!-- Project 6 -->
-    <div class="project" data-project-id="6">
-      <div class="project-image-wrapper">
-        <img class="project-image" src="https://picsum.photos/seed/scriptproject/600/400.jpg" alt="Network Automation Scripts">
-        <div class="project-overlay"></div>
-      </div>
-      <div class="project-content">
-        <div class="project-header">
-          <h3>Network Automation Scripts</h3>
-        </div>
-        <p>Developed Python scripts using Netmiko and Paramiko to automate common network tasks including configuration backups, firmware updates, and health checks.</p>
-        <div class="project-tags">
-          <span class="project-tag">Python</span>
-          <span class="project-tag">Automation</span>
-          <span class="project-tag">Netmiko</span>
-        </div>
-      </div>
-      <a href="#" class="project-link">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-          <polyline points="15,3 21,3 21,9"/>
-          <line x1="10" y1="14" x2="21" y2="3"/>
-        </svg>
-      </a>
-    </div>
+   
   </div>
 </section>
 
@@ -1257,47 +1225,7 @@ footer{text-align:center;padding:40px 24px;border-top:1px solid var(--border)}
       </div>
     </article>
 
-    <!-- Blog Post 2 -->
-    <article class="post" data-post-id="2">
-      <div class="post-date">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-          <line x1="16" y1="2" x2="16" y2="6"/>
-          <line x1="8" y1="2" x2="8" y2="6"/>
-          <line x1="3" y1="10" x2="21" y2="10"/>
-        </svg>
-        <span>February 28, 2024</span>
-      </div>
-      <h3>VLAN Best Practices for Network Segmentation</h3>
-      <p>Implementing effective VLAN segmentation strategies to improve security, performance, and manageability in enterprise networks.</p>
-      <div class="read-more">
-        <span>Read More</span>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polyline points="9 18 15 12 9 6"/>
-        </svg>
-      </div>
-    </article>
 
-    <!-- Blog Post 3 -->
-    <article class="post" data-post-id="3">
-      <div class="post-date">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-          <line x1="16" y1="2" x2="16" y2="6"/>
-          <line x1="8" y1="2" x2="8" y2="6"/>
-          <line x1="3" y1="10" x2="21" y2="10"/>
-        </svg>
-        <span>February 10, 2024</span>
-      </div>
-      <h3>Network Automation with Python: Getting Started</h3>
-      <p>A beginner's guide to automating network tasks using Python, with practical examples and recommended libraries.</p>
-      <div class="read-more">
-        <span>Read More</span>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polyline points="9 18 15 12 9 6"/>
-        </svg>
-      </div>
-    </article>
   </div>
 </section>
 
@@ -1344,13 +1272,13 @@ footer{text-align:center;padding:40px 24px;border-top:1px solid var(--border)}
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
             <polyline points="22,6 12,13 2,6"/>
           </svg>
-          <a href="mailto:mohamed@example.com">mohamed@example.com</a>
+          <a href="mailto:monetworks44@gmail.com">monetworks44@gmail.com</a>
         </div>
         <div class="info-item">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
           </svg>
-          <a href="tel:+1234567890">+123 456 7890</a>
+          <a href="https://wa.me/+249121831834">+249121831834</a>
         </div>
         <div class="info-item">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1366,7 +1294,7 @@ footer{text-align:center;padding:40px 24px;border-top:1px solid var(--border)}
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
           </svg>
-          <a href="https://github.com/mohamed" target="_blank">GitHub</a>
+          <a href="https://github.com/monetworks44" target="https://github.com/monetworks44">GitHub</a>
         </div>
         <div class="info-item">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1374,7 +1302,7 @@ footer{text-align:center;padding:40px 24px;border-top:1px solid var(--border)}
             <rect x="2" y="9" width="4" height="12"/>
             <circle cx="4" cy="4" r="2"/>
           </svg>
-          <a href="https://linkedin.com/in/mohamed" target="_blank">LinkedIn</a>
+          <a href="mohamed-alsadig-Junior-network-engineer" target="mohamed-alsadig-Junior-network-engineer">LinkedIn</a>
         </div>
         <div class="info-item">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1575,105 +1503,81 @@ footer{text-align:center;padding:40px 24px;border-top:1px solid var(--border)}
 // ---------- PROJECTS DATA ----------
 const projectsData = {
   1: {
-    title: "Cleaning Services moblie application",
-    image: "https://techvify.com/wp-content/uploads/2023/06/flutter-app-development.png",
+    title: "Cleaning Services Mobile Application",
+    image: "https://www.guru.com/blog/wp-content/uploads/2023/02/flutter-app-dev.jpg",
     description: `
-      <p>This project involved designing and implementing a comprehensive VLAN segmentation strategy for a multi-department organization. The goal was to enhance network security, improve performance, and simplify network management.</p>
+      <p>The Cleaning Services Mobile Application is a customer-focused platform developed as a graduation project to simplify access to professional cleaning services in Sudan. The application addresses common challenges such as limited service visibility, inefficient booking processes, and delayed responses by enabling users to request on-demand cleaning services directly from their mobile devices. By leveraging a modern mobile interface and a cloud-based backend, the solution improves service accessibility, operational efficiency, and overall customer convenience.</p>
       
       <h3>Project Objectives</h3>
       <ul>
-        <li>Segment the network into logical broadcast domains based on departmental functions</li>
-        <li>Implement inter-VLAN routing while maintaining security between segments</li>
-        <li>Optimize network traffic by containing broadcasts within appropriate VLANs</li>
-        <li>Design a scalable VLAN architecture that can accommodate future growth</li>
+        <li>Enable users to easily request cleaning services through a mobile application</li>
+        <li>Provide a smooth, intuitive, and responsive user experience</li>
+        <li>Allow users to track, view, and manage their service requests in real time</li>
+        <li>Support scalability and reliability using a cloud-based backend</li>
+        <li>Improve service accessibility and reduce response time for customers</li>
+        <li>Ensure secure user authentication and data handling</li>
       </ul>
       
       <h3>Implementation Details</h3>
-      <p>The network was segmented into the following VLANs:</p>
-      <ul>
-        <li>VLAN 10: Management (Network infrastructure devices)</li>
-        <li>VLAN 20: Finance Department</li>
-        <li>VLAN 30: Human Resources</li>
-        <li>VLAN 40: Engineering</li>
-        <li>VLAN 50: Guest Network</li>
-        <li>VLAN 99: Native VLAN</li>
-      </ul>
-      
-      <p>Inter-VLAN routing was implemented using a Layer 3 switch with appropriate access control lists to restrict traffic between sensitive departments while allowing necessary communications.</p>
+      <p>The application was developed using Flutter with Dart to deliver a cross-platform, high-performance mobile experience. Firebase was used as the backend to support authentication, real-time data handling, and scalability. Key implementation aspects include secure user authentication and account management, a service browsing and selection module, request submission with real-time status tracking, and instant updates powered by Firebase. The application follows a structured architecture with clear separation of UI, business logic, and data layers, alongside an efficient state management approach to ensure maintainability and responsiveness.</p>
+     
       
       <h3>Challenges and Solutions</h3>
-      <p>One of the main challenges was ensuring that legacy applications continued to function properly after the VLAN implementation. This was addressed by carefully mapping application dependencies and creating specific firewall rules to maintain required communications.</p>
+      <p>One key challenge was ensuring real-time synchronization of service request data between users and the backend. This was resolved by leveraging Firebase’s real-time database capabilities to instantly reflect updates across the application. Another challenge involved handling network instability, which was addressed through optimized data loading, error handling mechanisms, and a user-friendly interface that maintains usability under varying connectivity conditions.</p>
       
       <h3>Results</h3>
-      <p>The VLAN implementation resulted in:</p>
       <ul>
-        <li>40% reduction in broadcast traffic</li>
-        <li>Improved network security through logical segmentation</li>
-        <li>Easier network management and troubleshooting</li>
-        <li>Enhanced performance for critical applications</li>
+        <li>Simplified and streamlined service request workflow</li>
+        <li>Improved user engagement and overall customer satisfaction</li>
+        <li>Reliable real-time handling of service requests and updates</li>
+        <li>Stable, maintainable, and scalable mobile application architecture</li>
       </ul>
     `,
-    category: "Network Design",
-    duration: "3 weeks",
-    tech: "Cisco Switches, VLANs, ACLs",
+    category: "mobile-application",
+    duration: "3 months",
+    tech: "Dart, Flutter, Firebase (Authentication, Database)",
     status: "Completed",
-    tags: ["VLANs", "Switching", "Security", "Network Design"],
-    demo: "#",
-    github: "#"
+    tags: ["Android", "dart", "flutter", "firebase"],
+    demo: "https://github.com/monetworks44/top_care",
+    github: "https://github.com/monetworks44/top_care"
   },
   2: {
-    title: "OSPF Network Design",
-    image: "https://picsum.photos/seed/ospfproject/600/400.jpg",
+    title: "Cleaning Services Admin Panel Application",
+    image: "https://miro.medium.com/v2/resize:fit:1400/1*EEHimBtBgYFGZw2sRup0eQ.png",
     description: `
-      <p>This project focused on creating a redundant OSPF routing topology with proper area segmentation, route summarization, and failover mechanisms for a service provider network.</p>
+      <p>The Cleaning Services Admin Panel Application is a management-focused system developed as part of a graduation project to support the operational side of a cleaning services platform. The admin panel addresses challenges related to fragmented service coordination, limited request visibility, and manual workflow handling by providing administrators with a centralized interface to manage services, users, and customer requests. By integrating directly with the mobile application backend, the system ensures consistent data flow, real-time updates, and efficient service oversight.</p>
       
       <h3>Project Objectives</h3>
       <ul>
-        <li>Design a scalable OSPF routing architecture</li>
-        <li>Implement proper area segmentation for efficient routing</li>
+        <li>Centralize the management of customer service requests</li>
+        <li>Enable administrators to monitor, update, and control request statuses in real time</li>
         <li>Configure route summarization to reduce routing table sizes</li>
-        <li>Ensure high availability through redundant paths</li>
+        <li>Improve operational efficiency and reduce response times</li>
+        <li>Ensure consistent data synchronization with the customer mobile application</li>
+        <li>Provide secure access control for administrative operations</li>
       </ul>
-      
-      <h3>Network Architecture</h3>
-      <p>The OSPF network was designed with the following hierarchy:</p>
-      <ul>
-        <li>Area 0 (Backbone): Core routers connecting all other areas</li>
-        <li>Area 1: North region</li>
-        <li>Area 2: South region</li>
-        <li>Area 3: East region</li>
-        <li>Area 4: West region</li>
-      </ul>
-      
+    
       <h3>Implementation Details</h3>
-      <p>Key implementation aspects included:</p>
-      <ul>
-        <li>Configuring OSPF process ID and router IDs</li>
-        <li>Implementing proper network statements for area assignment</li>
-        <li>Setting up route summarization at Area Border Routers (ABRs)</li>
-        <li>Configuring OSPF authentication for security</li>
-        <li>Implementing OSPF cost adjustments to influence path selection</li>
-      </ul>
+      <p>The admin panel was developed using Flutter with Dart, enabling a unified codebase for web and desktop deployment. Firebase was used as the backend to handle authentication, data storage, and real-time synchronization. The system includes secure admin authentication with role-based access control, a dashboard for monitoring and managing incoming service requests, and full CRUD functionality for services and user accounts. Real-time data updates are handled through Firebase to maintain consistency across platforms, and tight integration with the mobile application backend ensures seamless communication between customer-facing and administrative components.</p>
       
       <h3>Challenges and Solutions</h3>
       <p>The main challenge was designing an area segmentation that balanced routing efficiency with administrative complexity. This was addressed by creating logical area boundaries based on geographic regions and implementing proper route summarization.</p>
       
       <h3>Results</h3>
-      <p>The OSPF implementation resulted in:</p>
       <ul>
-        <li>Sub-second convergence times</li>
-        <li>Reduced routing table sizes through summarization</li>
-        <li>Improved network scalability</li>
-        <li>Enhanced network resilience with automatic failover</li>
+        <li>Faster processing and handling of customer service requests</li>
+        <li>Improved operational visibility and administrative control</li>
+        <li>Reliable real-time data management across platforms</li>
+        <li>Scalable and maintainable administrative system architecture</li>
       </ul>
     `,
-    category: "Routing Protocols",
-    duration: "4 weeks",
-    tech: "OSPF, Cisco Routers, Route Summarization",
+    category: "web-application, admin-panel",
+    duration: "3 months",
+    tech: "Dart, Flutter, Firebase (Authentication, Database)",
     status: "Completed",
-    tags: ["OSPF", "Routing", "Redundancy", "Network Design"],
-    demo: "#",
-    github: "#"
+    tags: ["Dart", "Flutter", "Firebase", "web-application"],
+    demo: "https://github.com/monetworks44/top-care-web-admin?tab=readme-ov-file",
+    github: "https://github.com/monetworks44/top-care-web-admin?tab=readme-ov-file"
   },
   3: {
     title: "Dual-Stack IPv6 Migration",
@@ -2633,44 +2537,72 @@ function initContactForm() {
     
     // If form is valid, send email
     if (isValid) {
-      // Using EmailJS for sending emails
-      // You need to sign up at https://www.emailjs.com/ and get your service ID, template ID, and public key
+      // Show loading notification
+      showNotification('Sending your message...', 'loading');
+      
+      // Update button state
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = 'Sending...';
+      submitBtn.disabled = true;
       
       // Replace these with your actual EmailJS credentials
-      const serviceID = 'your_service_id';
-      const templateID = 'your_template_id';
-      const publicKey = 'your_public_key';
+      const serviceID = 'service_zpnl5wo'; // Replace with your actual service ID
+      const templateID = 'template_89zkoqm'; // Replace with your actual template ID
       
-      // Comment out the following code until you set up EmailJS
-      /*
-      emailjs.send(serviceID, templateID, formData, publicKey)
+      // Prepare data for EmailJS (using variable names that match your template)
+      const emailData = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_name: 'Mohamed' // Your name
+      };
+      
+      // Send email using EmailJS
+      emailjs.send(serviceID, templateID, emailData)
         .then(() => {
           showNotification('Your message has been sent successfully!', 'success');
           contactForm.reset();
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
         })
         .catch((error) => {
           console.error('Error sending email:', error);
           showNotification('Failed to send your message. Please try again later.', 'error');
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
         });
-      */
-      
-      // For now, just show a success message
-      showNotification('Your message has been sent successfully!', 'success');
-      contactForm.reset();
     }
   });
 }
 
 // ---------- FORM NOTIFICATION ----------
 function showNotification(message, type) {
-  formNotificationText.textContent = message;
-  formNotification.className = `form-notification ${type} show`;
+  // Create notification element if it doesn't exist
+  let notification = document.getElementById('formNotification');
+  if (!notification) {
+    notification = document.createElement('div');
+    notification.id = 'formNotification';
+    document.body.appendChild(notification);
+  }
+  
+  notification.textContent = message;
+  notification.className = `form-notification ${type} show`;
+  
+  // Hide notification after 5 seconds (except for loading state)
+  if (type !== 'loading') {
+    setTimeout(() => {
+      notification.classList.remove('show');
+    }, 5000);
+  }
+}
   
   // Hide notification after 5 seconds
   setTimeout(() => {
     formNotification.classList.remove('show');
   }, 5000);
-}
+
 
 // ---------- BACK TO TOP ----------
 function initBackToTop() {
